@@ -1,0 +1,200 @@
+[gd_scene load_steps=11 format=3 uid="uid://cvkpxfoywcbe"]
+
+[ext_resource type="Script" uid="uid://civx3omt17ffx" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://26xkr1irp46t" path="res://cam.gd" id="2_1bvp3"]
+[ext_resource type="Script" uid="uid://dd2ixht2d8r47" path="res://car_body.gd" id="2_h2yge"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1bvp3"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_lquwl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0xm2m"]
+emission_enabled = true
+emission_energy_multiplier = 0.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7mycd"]
+size = Vector3(2.2, 1.1, 4.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_h2yge"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1bvp3"]
+size = Vector3(6, 3, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lquwl"]
+size = Vector3(8, 3, 8)
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_0xm2m")
+
+[node name="cam" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.90630776, 0.42261827, 0, -0.42261827, 0.90630776, 0, 6, 10)
+current = true
+script = ExtResource("2_1bvp3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("PlaneMesh_1bvp3")
+
+[node name="Car" type="Node3D" parent="."]
+
+[node name="CarMesh" type="MeshInstance3D" parent="Car"]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 4, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_lquwl")
+surface_material_override/0 = SubResource("StandardMaterial3D_0xm2m")
+
+[node name="CarBody" type="StaticBody3D" parent="Car"]
+script = ExtResource("2_h2yge")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Car/CarBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_7mycd")
+
+[node name="Car2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+
+[node name="CarMesh" type="MeshInstance3D" parent="Car2"]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 4, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_lquwl")
+surface_material_override/0 = SubResource("StandardMaterial3D_0xm2m")
+
+[node name="CarBody" type="StaticBody3D" parent="Car2"]
+script = ExtResource("2_h2yge")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Car2/CarBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_7mycd")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="CarPanel" type="Panel" parent="UI"]
+custom_minimum_size = Vector2(400, 250)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -776.0
+offset_top = -449.0
+offset_right = -376.0
+offset_bottom = -199.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BuyButton" type="Button" parent="UI/CarPanel"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 30.0
+offset_right = 240.0
+offset_bottom = 70.0
+text = "Buy"
+
+[node name="RepairButton" type="Button" parent="UI/CarPanel"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 80.0
+offset_right = 240.0
+offset_bottom = 120.0
+text = "Repair"
+
+[node name="SellButton" type="Button" parent="UI/CarPanel"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 130.0
+offset_right = 240.0
+offset_bottom = 170.0
+text = "Sell"
+
+[node name="CloseButton" type="Button" parent="UI/CarPanel"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 180.0
+offset_right = 240.0
+offset_bottom = 220.0
+text = "Close"
+
+[node name="CarNameLabel" type="Label" parent="UI/CarPanel"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 117.0
+offset_bottom = 24.0
+text = "Selected: None"
+
+[node name="SaveButton" type="Button" parent="UI/CarPanel"]
+layout_mode = 0
+offset_left = 345.0
+offset_top = 7.0
+offset_right = 389.0
+offset_bottom = 38.0
+text = "Save"
+
+[node name="ResetButton" type="Button" parent="UI/CarPanel"]
+layout_mode = 0
+offset_left = 341.0
+offset_top = 51.0
+offset_right = 392.0
+offset_bottom = 82.0
+text = "Reset"
+
+[node name="StatsLabel" type="Label" parent="UI/CarPanel"]
+layout_mode = 0
+offset_left = 260.0
+offset_top = 203.0
+offset_right = 383.0
+offset_bottom = 226.0
+text = "Cond: -- Miles: --"
+
+[node name="MoneyLabel" type="Label" parent="UI"]
+offset_left = -25.0
+offset_top = -127.0
+offset_right = 46.0
+offset_bottom = -104.0
+text = "Money: 0"
+
+[node name="ToastLabel" type="Label" parent="UI"]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+
+[node name="Slots" type="Node3D" parent="."]
+
+[node name="Slot1" type="Node3D" parent="Slots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2)
+
+[node name="Slot2" type="Node3D" parent="Slots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -2)
+
+[node name="Slot3" type="Node3D" parent="Slots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
+
+[node name="Slot4" type="Node3D" parent="Slots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -2)
+
+[node name="Garage" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Garage"]
+transform = Transform3D(6, 0, 0, 0, 3, 0, 0, 0, 6, 0, 0, 0)
+mesh = SubResource("BoxMesh_h2yge")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Garage"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Garage/StaticBody3D"]
+shape = SubResource("BoxShape3D_1bvp3")
+
+[node name="RepairArea" type="Area3D" parent="Garage"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Garage/RepairArea"]
+shape = SubResource("BoxShape3D_lquwl")
+
+[connection signal="body_entered" from="Garage/RepairArea" to="." method="_on_repair_area_body_entered"]
+[connection signal="body_shape_exited" from="Garage/RepairArea" to="." method="_on_repair_area_body_shape_exited"]

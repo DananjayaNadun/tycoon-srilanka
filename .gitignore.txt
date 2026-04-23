@@ -1,0 +1,14 @@
+.import/
+.export/
+.export.cfg
+.export_presets.cfg
+
+*.tmp
+*.log
+
+# Godot cache
+.godot/
+
+# OS junk
+.DS_Store
+Thumbs.db
