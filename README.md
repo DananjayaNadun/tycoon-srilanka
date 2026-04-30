@@ -1,5 +1,7 @@
 # 🚗 Tycoon Sri Lanka — A Political Simulation Game
 
+<img width="1983" height="793" alt="Tycoon Sri Lanka" src="https://github.com/user-attachments/assets/f068941f-c4f7-4f68-bc69-85ea9e77a5b7" />
+
 It is a **story-driven simulation** inspired by the darker chapters of Sri Lanka’s political history — corruption, power struggles, and systemic control — influenced by real-world revelations like the Pandora Papers.
 While the gameplay includes familiar mechanics like **buying, repairing, and selling cars**, those are only the surface.  
 Underneath, the game explores how power, money, and influence shape a nation.
