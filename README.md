@@ -122,7 +122,7 @@ It does not target individuals, but explores systems and patterns.
 
 ## 👨‍💻 Developer
 
-BLACK WHITE
+Dananjaya Nadun
 
 ---
 
